@@ -1,0 +1,73 @@
+ def save_html(self, intervals, rates):
+        with open('exchange_report.html', 'w') as file_object:
+            file_object.write("<html><head> </head> ")
+            
+            file_object.write("<table>")
+            
+            file_object.write("<thead>")
+            
+            file_object.write("<th>")
+            
+            file_object.write("Intervals")
+            
+            file_object.write("</th>")
+            
+                
+            file_object.write("<th>")
+            
+            file_object.write("Rates")
+            
+            file_object.write("</th>")
+            
+            
+            
+            
+            file_object.write("</thead>")
+            
+            
+            for rate in rates:
+                file_object.write(f"<tr><td> {rate}</td> </tr>")
+            
+            for interval in intervals:
+                 file_object.write(f" <tr><td> {interval}</td> </tr>")
+                
+            file_object.write("</table>")
+            
+            file_object.write("</body></html>")
+
+
+
+
+ef save_html(self, intervals, rates):
+        # Create the dataframe
+        data = {
+            "Intervals": intervals,
+            "Rates": rates
+        }
+        
+        df = pd.DataFrame(data)
+        
+        #convert the DataFrame to an HTML file
+        html_table = df.to_html(index=False)
+        
+        #Save the html table as a file
+        with open('plot.html', 'w') as file_object:
+            file_object.write(html_table)
+            
+    def save_data_analysis(self, return_rates, std_deviations):
+        
+        # Create a DataFrame from the data
+        data = {
+        "Period": ["45 days", "90 days", "180 days", "360 days"],
+        "Return Rate values": return_rates,
+        "std_deviation values": std_deviations
+        }
+
+        df = pd.DataFrame(data)
+
+        # Convert the DataFrame to an HTML table
+        html_table = df.to_html(index=False)
+
+        # Save the HTML table to a file
+        with open('data_analysis_report.html', 'w') as file:
+            file.write(html_table)
